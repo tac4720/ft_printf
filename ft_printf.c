@@ -253,18 +253,18 @@ int ft_printf(const char *format, ...)
 	return (ret);
 }
 
-//#include <stdio.h>
-//int main()
-//{
-//	int hex;
-//	int	ret;
+#include <stdio.h>
+int main()
+{
+	int hex;
+	int	ret;
 
-//	ret = 0;
-//	hex = 1024;
+	ret = 0;
+	hex = 1024;
 
-//	ret = ft_printf("%d\n", __INT_MAX__);
-//	printf("%i\n", ret);
+	ret = ft_printf("%p\n", __INT_MAX__);
+	printf("%i\n", ret);
 
-//	ret = printf("%d\n", __INT_MAX__);
-//	printf("%i\n", ret);	
-//}
+	ret = printf("%p\n", __INT_MAX__);
+	printf("%i\n", ret);	
+}
