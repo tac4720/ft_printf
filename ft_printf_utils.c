@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thashimo <thashimo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/17 23:04:36 by thashimo          #+#    #+#             */
+/*   Updated: 2024/02/17 23:08:45 by thashimo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 size_t	ft_strlen(char *str)
@@ -5,7 +17,7 @@ size_t	ft_strlen(char *str)
 	size_t	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
@@ -41,14 +53,12 @@ int	ft_putint(int n)
 		count += 11;
 		return (count);
 	}
-
 	if (n < 0)
 	{
 		ft_putchar('-');
 		count++;
 		n = -n;
 	}
-
 	if (n >= 10)
 	{
 		count += ft_putint(n / 10);
@@ -60,7 +70,7 @@ int	ft_putint(int n)
 
 int	ft_putuint(unsigned int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n >= 10)
@@ -69,5 +79,5 @@ int	ft_putuint(unsigned int n)
 	}
 	ft_putchar('0' + (n % 10));
 	count++;
-	return(count);
+	return (count);
 }

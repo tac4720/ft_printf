@@ -1,47 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thashimo <thashimo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/17 23:04:42 by thashimo          #+#    #+#             */
+/*   Updated: 2024/02/17 23:19:43 by thashimo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int ft_puthex_complement(int n)
+int	ft_puthex_complement(int n)
 {
-	int	ret;
-	
-	ret = 0;
-    if (n < 0)
-    {
-        unsigned int abs_val = (unsigned int)(-n); // 符号なし整数に変換して絶対値を取得
-        unsigned int complement = ~abs_val + 1;    // 1の補数を取得
+	int				ret;
+	unsigned int	abs_val;
+	unsigned int	complement;
 
-        return (ft_puthex(complement));
-    }
-    else
-    {
-        return (ft_puthex(n)); // 正の数の場合は通常の方法で出力
-    }
+	ret = 0;
+	if (n < 0)
+	{
+		abs_val = (unsigned int)(-n);
+		complement = ~abs_val + 1;
+		return (ft_puthex(complement));
+	}
+	else
+	{
+		return (ft_puthex(n));
+	}
 	return (ret);
 }
 
-int ft_putHex_complement(int n)
+int	ft_putuhex_complement(int n)
 {
-	int	ret;
+	int				ret;
+	unsigned int	abs_val;
+	unsigned int	complement;
 
 	ret = 0;
-    if (n < 0)
-    {
-        unsigned int abs_val = (unsigned int)(-n); // 符号なし整数に変換して絶対値を取得
-        unsigned int complement = ~abs_val + 1;    // 1の補数を取得
-
-		return(ft_putHex(complement));
-    }
-    else
-    {
-        return (ft_putHex(n)); // 正の数の場合は通常の方法で出力
-    }
+	if (n < 0)
+	{
+		abs_val = (unsigned int)(-n);
+		complement = ~abs_val + 1;
+		return (ft_putuhex(complement));
+	}
+	else
+	{
+		return (ft_putuhex(n));
+	}
 	return (ret);
 }
 
 int	ft_puthex(long n)
 {
 	const char	map[] = "0123456789abcdef";
-	int	count;
+	int			count;
 
 	count = 0;
 	if (n >= 16)
@@ -53,28 +67,32 @@ int	ft_puthex(long n)
 	return (count);
 }
 
-int	ft_putHex(long n)
+int	ft_putuhex(long n)
 {
 	const char	map[] = "0123456789ABCDEF";
-	int count;
+	int			count;
 
 	count = 0;
 	if (n >= 16)
 	{
-		count += ft_putHex(n / 16);
+		count += ft_putuhex(n / 16);
 	}
 	ft_putchar(map[n % 16]);
 	count++;
 	return (count);
 }
 
-int	ft_putptr(void *ptr)
+int	ft_puthex_uintptr(uintptr_t n)
 {
-	int	count;
+	const char	map[] = "0123456789abcdef";
+	int			count;
 
 	count = 0;
-	ft_putstr("0x");
-	count += 2;
-	count += ft_puthex((long)ptr);
-	return(count);
+	if (n >= 16)
+	{
+		count += ft_puthex_uintptr(n / 16);
+	}
+	ft_putchar(map[n % 16]);
+	count++;
+	return (count);
 }
